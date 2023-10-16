@@ -1,0 +1,23 @@
+.Nav{
+    width: 75vw;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.Link{
+    text-decoration: none;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 8px 12px;
+    font-weight: bold;
+    color: rgb(151, 248, 255);
+    background-color: rgb(9, 199, 247);
+    border-radius: 4px;
+    box-shadow: 0 0 10px 5px rgb(0, 255, 255);
+    transition: box-shadow 0.3s;
+    transition: color 0.3s;
+    transition: background-color 0.3s;
+}
