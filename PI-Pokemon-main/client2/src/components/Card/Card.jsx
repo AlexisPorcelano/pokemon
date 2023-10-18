@@ -18,13 +18,13 @@ export default function Card({ name, img, id, types }) {
       <button onClick={() => dispatch(delPokemon(id))}>X</button>
       <h2>Name: {name && name}</h2>
       <Link to={`/detail/${id}`}>
-        <img src={img && img.front_default} alt={"pokemon sprite"} />
-        <h3>
+        <img src={img && img} alt={"pokemon sprite"} />
+        {/* <h3>
           Types:
           {types && types.length > 0
             ? types.map((e, i) => <h3 key={i}>{e.type.name}</h3>)
             : null}
-        </h3>
+        </h3> */}
       </Link>
     </div>
   );

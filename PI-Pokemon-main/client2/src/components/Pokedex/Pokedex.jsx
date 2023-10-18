@@ -6,15 +6,14 @@ import Card from "../Card/Card";
 export default function Pokedex() {
   const pokemons = useSelector((state) => state.pokemons);
   const change = useSelector((state) => state.change);
-  const pokeBackUp = useSelector((state) => state.pokeBackUp)
+  // const pokeBackUp = useSelector((state) => state.pokeBackUp)
   const dispatch = useDispatch();
   
   useEffect(() => {
     dispatch(getPokemons())
   }, [change]);
 
-  console.log('pokeBackUp: ', pokeBackUp);
-  console.log('pokemons: ', pokemons);
+  console.log('pokemons added: ', pokemons);
 
   return (
     <div>
@@ -23,9 +22,9 @@ export default function Pokedex() {
           <Card
             key={i}
             name={pokemon.name}
-            img={pokemon.sprites}
+            img={pokemon.image}
             id={pokemon.id}
-            types={pokemon.types}
+            // types={pokemon.types}
           />
         ))
       ) : (

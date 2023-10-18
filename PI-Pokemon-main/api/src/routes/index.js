@@ -4,10 +4,12 @@ const { Router } = require("express");
 
 const {
   getPokemons,
-  getName,
-  deletePokemon,
   getDetail,
 } = require("../controllers/pokemons.js");
+
+const getPokeName = require('../controllers/getPokeName.js')
+
+const deletePokemon = require('../controllers/deletePokemon.js')
 
 const getTypes = require("../controllers/getTypes");
 
@@ -18,7 +20,7 @@ const router = Router();
 
 router.get("/pokemons", getPokemons);
 
-router.get("/pokemons/:name", getName);
+router.get("/pokemons/:name", getPokeName);
 
 router.delete('/delPokemon/:id', deletePokemon)
 

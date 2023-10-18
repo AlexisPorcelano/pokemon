@@ -1,10 +1,17 @@
-import { ADD_POKEMON, CHANGE, DEL_POKEMON, GET_POKEMONS } from "./actions";
+import {
+  ADD_POKEMON,
+  CHANGE,
+  DEL_POKEMON,
+  GET_DETAIL,
+  GET_POKEMONS,
+} from "./actions";
 
 let initState = {
   pokemons: [],
   pokeBackUp: [],
   types: [],
   change: false,
+  detail: {},
 };
 
 const reducer = (state = initState, action) => {
@@ -14,10 +21,10 @@ const reducer = (state = initState, action) => {
         ...state,
         pokemons: action.payload,
         change: false,
-        pokeBackUp:
-          state.pokeBackUp.length === 0
-            ? action.payload
-            : [...state.pokeBackUp],
+        // pokeBackUp:
+        //   state.pokeBackUp.length === 0
+        //     ? action.payload
+        //     : [...state.pokeBackUp],
       };
     case ADD_POKEMON:
       return {
@@ -32,6 +39,11 @@ const reducer = (state = initState, action) => {
           (pokemon) => pokemon.id !== action.payload
         ),
         change: true,
+      };
+    case GET_DETAIL:
+      return {
+        ...state,
+        detail: action.payload,
       };
     default:
       return state;

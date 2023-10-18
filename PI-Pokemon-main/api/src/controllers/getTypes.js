@@ -26,9 +26,8 @@ const getTypes = async (req, res) => {
 
       res.status(200).json({ pokemonTypes });
     } else {
-
-        const pokemonTypes = await Types.findAll()
-      res.status(200).json({ pokemonTypes});
+      const pokemonTypes = await Types.findAll();
+      res.status(200).json({ pokemonTypes });
     }
   } catch (error) {
     console.error("Error:", error);

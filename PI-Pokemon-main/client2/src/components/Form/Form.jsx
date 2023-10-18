@@ -1,10 +1,14 @@
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 
-export default function Form(){
-    return(
-        <div>
-            <Link to={'/pokedex'} >Back</Link>
-            <h1>form</h1>
-        </div>
-    )
+export default function Form() {
+  return (
+    <div>
+      <Link to={"/pokedex"}>Back</Link>
+      <form action="submit">
+        <label htmlFor="name">Name: </label>
+        <input type="text" name="name" />
+
+      </form>
+    </div>
+  );
 }

@@ -8,7 +8,6 @@ export default function Searchbar() {
   const dispatch = useDispatch()
 
   const onSearch = async () => {
-    console.log('name: ', name);
     try {
       const response = await axios.get(`http://localhost:3001/pokemons/${name}`);
       if (response.data) {
