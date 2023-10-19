@@ -4,6 +4,8 @@ export const DEL_POKEMON = "DEL_POKEMON";
 
 export const GET_POKEMONS = "GET_POKEMONS";
 
+export const GET_TYPES = "GET_TYPES";
+
 export const GET_DETAIL = "GET_DETAIL";
 
 export const CHANGE = "CHANGE";
@@ -39,12 +41,28 @@ export const getPokemons = () => {
     try {
       const response = await axios.get("http://localhost:3001/pokemons");
       const data = response.data;
-      console.log('action creator: ', data);
       dispatch({
         type: GET_POKEMONS,
         payload: data,
       });
-    } catch (error) {}
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+};
+
+export const getTypes = () => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get("http://localhost:3001/types");
+      const data = response.data.pokemonTypes;
+      dispatch({
+        type: GET_TYPES,
+        payload: data,
+      });
+    } catch (error) {
+      console.error(error.message);
+    }
   };
 };
 
@@ -74,7 +92,7 @@ export const delPokemon = (id) => {
       );
       if (response.data) {
         dispatch({
-          type: ADD_POKEMON,
+          type: DEL_POKEMON,
           payload: id,
         });
       }

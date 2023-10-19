@@ -34,7 +34,7 @@ const getPokeName = async (req, res) => {
           weight: data.weight,
         });
 
-        await newPokemon.addType(pokemonTypes[0])
+        await newPokemon.addTypes(pokemonTypes[0])
 
         if(pokemonTypes[1]) await newPokemon.addTypes(pokemonTypes[1])
 

@@ -1,4 +1,4 @@
-const Pokemon = require("../db.js");
+const { Pokemon } = require("../db.js");
 
 const deletePokemon = async (req, res) => {
   const { id } = req.params;
@@ -17,4 +17,4 @@ const deletePokemon = async (req, res) => {
   }
 };
 
-module.exports = deletePokemon
+module.exports = deletePokemon;

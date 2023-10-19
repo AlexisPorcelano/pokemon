@@ -1,19 +1,18 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getPokemons } from "../../Redux/actions";
+import { getPokemons, getTypes } from "../../Redux/actions";
 import Card from "../Card/Card";
 
 export default function Pokedex() {
   const pokemons = useSelector((state) => state.pokemons);
   const change = useSelector((state) => state.change);
-  // const pokeBackUp = useSelector((state) => state.pokeBackUp)
+  const types = useSelector((state) => state.types)
   const dispatch = useDispatch();
   
   useEffect(() => {
-    dispatch(getPokemons())
+    if (change === true || pokemons.length === 0) dispatch(getPokemons())
+    dispatch(getTypes())
   }, [change]);
-
-  console.log('pokemons added: ', pokemons);
 
   return (
     <div>
@@ -22,9 +21,9 @@ export default function Pokedex() {
           <Card
             key={i}
             name={pokemon.name}
-            img={pokemon.image}
+            image={pokemon.image}
             id={pokemon.id}
-            // types={pokemon.types}
+            types={pokemon.types}
           />
         ))
       ) : (
