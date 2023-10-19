@@ -19,12 +19,12 @@ export default function Card({ name, image, id, types }) {
       <h2>Name: {name && name}</h2>
       <Link to={`/detail/${id}`}>
         <img src={image && image} alt={"pokemon sprite"} />
-        <h3>
-          Types:
-          {types && types.length > 0
-            ? types.map((e, i) => <h3 key={i}>{e.type.name}</h3>)
-            : null}
-        </h3>
+        <li>
+        Types:
+        {types && types.length > 0
+          ? types.map((e, i) => <lu key={i}> {e.name}</lu>)
+          : null}
+      </li>
       </Link>
     </div>
   );

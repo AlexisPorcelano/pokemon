@@ -31,8 +31,8 @@ export default function Detail() {
       />
       <li>
         Types:
-        {pokemon.types && pokemon.types.length > 0
-          ? pokemon.types.map((e, i) => <lu key={i}>{e.type.name}</lu>)
+        {pokemon.Types && pokemon.Types.length > 0
+          ? pokemon.Types.map((e, i) => <lu key={i}> {e.name}</lu>)
           : null}
       </li>
       <h3>Height: {pokemon.height && pokemon.height} Ft.</h3>

@@ -23,7 +23,7 @@ export default function Pokedex() {
             name={pokemon.name}
             image={pokemon.image}
             id={pokemon.id}
-            types={pokemon.types}
+            types={pokemon.Types}
           />
         ))
       ) : (

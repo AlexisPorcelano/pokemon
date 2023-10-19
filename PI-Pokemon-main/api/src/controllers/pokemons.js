@@ -5,7 +5,7 @@ const axios = require("axios");
 const getPokemons = async (req, res) => {
   // Se encarga de retornar los Pokémon guardados en el servidor
   try {
-    const pokemons = await Pokemon.findAll();
+    const pokemons = await Pokemon.findAll({ include: "Types" });
 
     if (!pokemons) {
       res.status(404).json({ error: "Could not retrieve data" });
@@ -22,8 +22,7 @@ const getDetail = async (req, res) => {
   const { id } = req.params;
   const parsedId = parseInt(id);
   try {
-      let found = await Pokemon.findOne({where: {id: parsedId}});
-      if (!found) res.status(404).json({ error: "pokemon detail not found" });
+      let found = await Pokemon.findOne({where: {id: parsedId}, include: "Types"});      if (!found) res.status(404).json({ error: "pokemon detail not found" });
       if (found) res.status(200).json(found);
       } catch (error) {
     res.status(500).json({ error: error.message });
