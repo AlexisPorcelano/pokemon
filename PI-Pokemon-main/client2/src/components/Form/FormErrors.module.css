@@ -1,0 +1,14 @@
+.container{
+    max-height: 30px;
+    min-width: 25vw;
+}
+
+.noErrors{
+    background-color: rgb(46, 153, 46);
+    align-self: flex-start;
+}
+
+.errors{
+    background-color: rgb(153, 46, 46);
+    align-self: flex-start;
+}

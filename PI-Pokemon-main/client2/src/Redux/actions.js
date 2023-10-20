@@ -8,9 +8,27 @@ export const GET_TYPES = "GET_TYPES";
 
 export const GET_DETAIL = "GET_DETAIL";
 
+export const CREATE_POKEMON = "CREATE_POKEMON"
+
 export const CHANGE = "CHANGE";
 
 import axios from "axios";
+
+export const createPokemon = (pokeData) => {
+  console.log(pokeData);
+  return async (dispatch) => {
+    try {
+      const response = await axios.post(`http://localhost:3001/pokemons/${pokeData.name}`)
+      const {data} = response
+      dispatch({
+        type: CREATE_POKEMON,
+        payload: data
+      })
+    } catch (error) {
+      console.error(error.message)
+    }
+  }
+}
 
 export const getDetail = (id) => {
   return async (dispatch) => {

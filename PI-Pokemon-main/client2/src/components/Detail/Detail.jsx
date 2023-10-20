@@ -24,19 +24,23 @@ export default function Detail() {
   return (
     <div>
       <Link to={"/pokedex"}>Back</Link>
-      <h1> Name: {pokemon.name && pokemon.name}</h1>
-      <img
-        src={pokemon.image && pokemon.image}
-        alt="sprite"
-      />
-      <li>
+      <h2> Name: {pokemon.name && pokemon.name}</h2>
+      <img src={pokemon.image && pokemon.image} alt="sprite" />
+      <div>
         Types:
         {pokemon.Types && pokemon.Types.length > 0
-          ? pokemon.Types.map((e, i) => <lu key={i}> {e.name}</lu>)
+          ? pokemon.Types.map((e, i) => <h4 key={i}> {e.name}</h4>)
           : null}
+      </div>
+      <li>
+        STATS:
+        <lu>HP: {pokemon.health && pokemon.health}</lu>
+        <lu>ATK: {pokemon.attack && pokemon.attack}</lu>
+        <lu>DEF: {pokemon.defense && pokemon.defense}</lu>
+        <lu>SPD: {pokemon.speed && pokemon.speed}</lu>
+        <lu>HGT: {pokemon.height && pokemon.height} </lu>
+        <lu>WGT: {pokemon.weight && pokemon.weight}</lu>
       </li>
-      <h3>Height: {pokemon.height && pokemon.height} Ft.</h3>
-      <h3>Weight: {pokemon.weight && pokemon.weight} Lbs.</h3>
     </div>
   );
 }

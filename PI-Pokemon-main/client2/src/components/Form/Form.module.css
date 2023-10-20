@@ -1,0 +1,87 @@
+
+.formContainer {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: #666666;
+    box-shadow: 0 0 5px #ccc;
+  }
+  
+.Div{
+    width: 50vw ;
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 2%;
+}
+
+.Div2{
+    width: 50vw ;
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 2%;
+    align-items:flex-start;
+}
+
+.Form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+
+.Label {
+    flex: 1;
+    min-width: 75px;
+    max-width: 100px;
+    text-align: right;
+  }
+
+.Name{
+    height: 20px;
+    width: 50px;
+    flex: 2;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.Input {
+    height: 20px;
+    width: 50px;
+    max-width: 50px;
+    flex: 2;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.Select {
+    height: 30px;
+    width: 50px;
+    min-width: 70px;
+    max-width: 70px;
+    flex: 2;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  
+.linkBack {
+    display: block;
+    margin: 10px 0;
+    text-decoration: none;
+    color: #333;
+  }
+  
+
+.button {
+    height: 30px;
+    display: block;
+    padding: 10px;
+    border: none;
+    background: #333;
+    color: #fff;
+    border-radius: 3px;
+    cursor: pointer;
+  }
