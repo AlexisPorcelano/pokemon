@@ -1,30 +1,42 @@
-// recibe el pokemon y lo guarda en la base de datos relacionandolo ademas con sus tipos
-// recibe la info por body
-
 const axios = require("axios");
-const { Pokemon } = require("../db.js");
+const { Pokemon, Types } = require("../db.js");
 
 const postPokemon = async (req, res) => {
   try {
-    const data = req.body;
+    const pokeData  = req.body;
 
-    console.log(req.body);
+    console.log('pokemon data received');
+
+    const foundTypes = await Promise.all(
+      pokeData.types.map((typeName) =>
+        Types.findOne({ where: { name: typeName } })
+      )
+    );
+
+    console.log('types: ', foundTypes);
+
+    console.log('creating pokemon');
 
     const newPokemon = await Pokemon.create({
-        name: data.name,
-        image: data.sprites.front_default,
-        health: data.stats[0].base_stat,
-        attack: data.stats[1].base_stat,
-        defense: data.stats[2].base_stat,
-        speed: data.stats[5].base_stat,
-        height: data.height,
-        weight: data.weight,
+        name: pokeData.name,
+        image: pokeData.image,
+        health: pokeData.health,
+        attack: pokeData.attack,
+        defense: pokeData.defense,
+        speed: pokeData.speed,
+        height: pokeData.height,
+        weight: pokeData.weight,
       });
+
+      console.log('relating types');
+
+      await newPokemon.addTypes(foundTypes);
+      console.log('pokemon-type relation completed');
 
     if (!newPokemon) {
       res.status(400).json({ error: "Bad request" });
     } else {
-      res.status(201).json({ newPokemon });
+      res.status(201).json({ message: 'pokemon created' });
     }
   } catch (error) {
     res.status(500).json({ error: error.message });

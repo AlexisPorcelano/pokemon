@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export const ADD_POKEMON = "ADD_POKEMON";
 
 export const DEL_POKEMON = "DEL_POKEMON";
@@ -8,27 +10,29 @@ export const GET_TYPES = "GET_TYPES";
 
 export const GET_DETAIL = "GET_DETAIL";
 
-export const CREATE_POKEMON = "CREATE_POKEMON"
+export const CREATE_POKEMON = "CREATE_POKEMON";
 
-export const CHANGE = "CHANGE";
+export const ORDER = "ORDER";
 
-import axios from "axios";
+export const FILTER = "FILTER";
 
 export const createPokemon = (pokeData) => {
   console.log(pokeData);
   return async (dispatch) => {
     try {
-      const response = await axios.post(`http://localhost:3001/pokemons/${pokeData.name}`)
-      const {data} = response
+      const response = await axios.post(
+        `http://localhost:3001/pokemons/${pokeData.name}`
+      );
+      const { data } = response;
       dispatch({
         type: CREATE_POKEMON,
-        payload: data
-      })
+        payload: data,
+      });
     } catch (error) {
-      console.error(error.message)
+      console.error(error.message);
     }
-  }
-}
+  };
+};
 
 export const getDetail = (id) => {
   return async (dispatch) => {
@@ -44,13 +48,6 @@ export const getDetail = (id) => {
     } catch (error) {
       console.error(error.message);
     }
-  };
-};
-
-export const change = () => {
-  return {
-    action: CHANGE,
-    payload: null,
   };
 };
 
@@ -117,5 +114,19 @@ export const delPokemon = (id) => {
     } catch (error) {
       window.alert(error.message);
     }
+  };
+};
+
+export const order = (value) => {
+  return {
+    types: ORDER,
+    payload: value,
+  };
+};
+
+export const filter = (value) => {
+  return {
+    types: FILTER,
+    payload: value,
   };
 };

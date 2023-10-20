@@ -27,6 +27,6 @@ router.get("/pokemonDetail/:id", getDetail);
 
 router.get("/types", getTypes);
 
-router.post("/pokemons/:name", postPokemon);
+router.post("/pokemons", postPokemon);
 
 module.exports = router;

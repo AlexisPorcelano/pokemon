@@ -12,9 +12,9 @@ export default function FormErrors({ pokeData }) {
       parseInt(pokeData.speed) +
       parseInt(pokeData.weight) +
       parseInt(pokeData.height);
-    console.log(statSum);
-
-    if (pokeData.name.length > 10) {
+    if (containsNumbers(pokeData.name)) {
+      setError("Name cannot contain numbers");
+    }else if (pokeData.name.length > 10) {
       setError("Name must be under 10 characters");
     } else if (pokeData.name.length < 4) {
       setError("Name must be over 4 characters");

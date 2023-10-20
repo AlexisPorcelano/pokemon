@@ -4,12 +4,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { createPokemon, getTypes } from "../../Redux/actions";
 import styles from "./Form.module.css";
 import FormErrors from "./FormErrors";
+import axios from "axios";
 
 export default function Form() {
   const typesList = useSelector((state) => state.types);
   const dispatch = useDispatch();
 
-  const [twoTypes, setTwoTypes] = useState(false)
+  const [twoTypes, setTwoTypes] = useState(false);
 
   const [pokeData, setPokeData] = useState({
     name: "",
@@ -40,9 +41,17 @@ export default function Form() {
     dispatch(getTypes());
   }, []);
 
-  const handleSubmit = () => {
-    console.log(pokeData);
-  }
+  const handleSubmit = async () => {
+    try {
+      const response = await axios.post(
+        "http://localhost:3001/pokemons",
+        pokeData
+      );
+      console.log("sent", response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <div className={styles.formContainer}>
@@ -140,36 +149,45 @@ export default function Form() {
           <label htmlFor="types" className={styles.Label}>
             Types:
           </label>
-          <select
-            name="type1"
-            onChange={handleTypeSelect}
-            className={styles.Select}
-          >
-            {typesList && typesList.length > 0
-              ? typesList.map((type, i) => (
-                  <option key={i} value={type.name}>
-                    {type.name}
-                  </option>
-                ))
-              : null}
-          </select>
-          <select
-            name="type2"
-            onChange={handleTypeSelect}
-            className={styles.Select}
-          >
-            {typesList && typesList.length > 0
-              ? typesList.map((type, i) => (
-                  <option key={i} value={type.name}>
-                    {type.name}
-                  </option>
-                ))
-              : null}
-          </select>
+          <div className={styles.Div1}>
+            <select
+              name="type1"
+              onChange={handleTypeSelect}
+              className={styles.Select}
+            >
+              {typesList && typesList.length > 0
+                ? typesList.map((type, i) => (
+                    <option key={i} value={type.name}>
+                      {type.name}
+                    </option>
+                  ))
+                : null}
+            </select>
+          </div>
+          {twoTypes ? (
+            <>
+              <select
+                name="type2"
+                onChange={handleTypeSelect}
+                className={styles.Select}
+              >
+                {typesList && typesList.length > 0
+                  ? typesList.map((type, i) => (
+                      <option key={i} value={type.name}>
+                        {type.name}
+                      </option>
+                    ))
+                  : null}
+              </select>
+              <button  className={styles.button} onClick={() => setTwoTypes(false)}>-</button>
+              </>
+          ) : (
+            <button className={styles.button} onClick={() => setTwoTypes(true)}>+</button>
+          )}
 
           <FormErrors pokeData={pokeData} />
 
-          <button className={styles.button} onClick={()=> handleSubmit()} >
+          <button className={styles.button} onClick={() => handleSubmit()}>
             Submit
           </button>
         </div>

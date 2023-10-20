@@ -1,11 +1,11 @@
 import {
   ADD_POKEMON,
-  CHANGE,
   CREATE_POKEMON,
   DEL_POKEMON,
   GET_DETAIL,
   GET_POKEMONS,
   GET_TYPES,
+  ORDER,
 } from "./actions";
 
 let initState = {
