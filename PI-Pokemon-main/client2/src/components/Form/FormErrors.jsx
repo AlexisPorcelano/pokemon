@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import styles from "./FormErrors.module.css";
 
-export default function FormErrors({ pokeData }) {
+export default function FormErrors({ pokeData}) {
   const [error, setError] = useState("");
 
   useEffect(() => {

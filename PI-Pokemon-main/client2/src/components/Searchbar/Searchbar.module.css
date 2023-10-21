@@ -1,0 +1,14 @@
+.container{
+    display: flex;
+}
+
+.input{
+    background-color: rgb(185, 202, 235);
+    border: 1px solid blue;
+}
+
+.button{
+    color: yellow;
+    background-color: blue;
+    border-radius: 1px;
+}

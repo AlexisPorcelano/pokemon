@@ -1,11 +1,10 @@
 import {
   ADD_POKEMON,
-  CREATE_POKEMON,
+  // CREATE_POKEMON,
   DEL_POKEMON,
   GET_DETAIL,
   GET_POKEMONS,
   GET_TYPES,
-  ORDER,
 } from "./actions";
 
 let initState = {
@@ -18,12 +17,6 @@ let initState = {
 
 const reducer = (state = initState, action) => {
   switch (action.type) {
-    case CREATE_POKEMON:
-      return {
-        ...state,
-        pokeBackUp: [...state.pokeBackUp, action.payload],
-        change: true,
-      };
     case GET_POKEMONS:
       return {
         ...state,

@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPokemons, getTypes } from "../../Redux/actions";
 import Card from "../Card/Card";
+import styles from './Pokedex.module.css'
 
 export default function Pokedex() {
   const pokemons = useSelector((state) => state.pokemons);
@@ -15,7 +16,7 @@ export default function Pokedex() {
   }, [change]);
 
   return (
-    <div>
+    <div className={styles.container} >
       {pokemons && pokemons.length > 0 ? (
         pokemons.map((pokemon, i) => (
           <Card
@@ -24,10 +25,14 @@ export default function Pokedex() {
             image={pokemon.image}
             id={pokemon.id}
             types={pokemon.Types}
+            showButton={true}
+            disableLink={false}
           />
         ))
       ) : (
-        <h3>Please add pokemons to display them here</h3>
+        <div className={styles.textContainer} >
+        <h3 className={styles.text} >Please add pokemons to display them here</h3>
+        </div>
       )}
     </div>
   );

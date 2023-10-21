@@ -19,6 +19,8 @@ const router = Router();
 
 router.get("/pokemons", getPokemons);
 
+router.post("/pokemons", postPokemon);
+
 router.get("/pokemons/:name", getPokeName);
 
 router.delete("/delPokemon/:id", deletePokemon);
@@ -26,7 +28,5 @@ router.delete("/delPokemon/:id", deletePokemon);
 router.get("/pokemonDetail/:id", getDetail);
 
 router.get("/types", getTypes);
-
-router.post("/pokemons", postPokemon);
 
 module.exports = router;

@@ -1,0 +1,25 @@
+.container{
+    height: 70vh;
+    width: 90vw;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    border: 1px solid black;
+    position: relative;
+    overflow-y: auto;
+    background-color: rgb(185, 202, 235);
+    justify-content: center;
+}
+
+.textContainer{
+    width: 600px;
+    height: 70px;
+    border: 1px solid gray;
+    background-color: rgba(128, 128, 128, 0.473);
+}
+
+.text{
+    color: rgb(119, 119, 119);
+    font-size: large;
+    font-family: 'Courier New', Courier, monospace;
+}

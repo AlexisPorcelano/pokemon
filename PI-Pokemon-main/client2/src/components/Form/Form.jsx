@@ -1,16 +1,18 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createPokemon, getTypes } from "../../Redux/actions";
+import { getTypes } from "../../Redux/actions";
 import styles from "./Form.module.css";
 import FormErrors from "./FormErrors";
 import axios from "axios";
+import Card from "../Card/Card";
 
 export default function Form() {
   const typesList = useSelector((state) => state.types);
   const dispatch = useDispatch();
 
   const [twoTypes, setTwoTypes] = useState(false);
+  const [preview, setPreview] = useState(false);
 
   const [pokeData, setPokeData] = useState({
     name: "",
@@ -24,6 +26,10 @@ export default function Form() {
     types: [],
   });
 
+  useEffect(() => {
+    dispatch(getTypes());
+  }, []);
+
   const handleChange = (event) => {
     const { name, value } = event.target;
     setPokeData((prevData) => ({ ...prevData, [name]: value }));
@@ -36,10 +42,6 @@ export default function Form() {
       types: [...prevData.types, value],
     }));
   };
-
-  useEffect(() => {
-    dispatch(getTypes());
-  }, []);
 
   const handleSubmit = async () => {
     try {
@@ -179,19 +181,38 @@ export default function Form() {
                     ))
                   : null}
               </select>
-              <button  className={styles.button} onClick={() => setTwoTypes(false)}>-</button>
-              </>
+              <button
+                className={styles.button}
+                onClick={() => setTwoTypes(false)}
+              >
+                -
+              </button>
+            </>
           ) : (
-            <button className={styles.button} onClick={() => setTwoTypes(true)}>+</button>
+            <button className={styles.button} onClick={() => setTwoTypes(true)}>
+              +
+            </button>
           )}
-
           <FormErrors pokeData={pokeData} />
-
           <button className={styles.button} onClick={() => handleSubmit()}>
             Submit
           </button>
         </div>
       </form>
+      <div>
+        {preview ? (
+          <Card
+            name={pokeData.name}
+            image={pokeData.image}
+            types={pokeData.types}
+            showButton={false}
+            disableLink={true}
+            setPreview={setPreview}
+          />
+        ) : (
+          <button className={styles.button2} onClick={() => setPreview(true)}>Preview</button>
+        )}
+      </div>
     </div>
   );
 }

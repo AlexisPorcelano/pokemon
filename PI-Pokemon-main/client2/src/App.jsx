@@ -16,7 +16,7 @@ function App() {
     <Routes>
       <Route path='/submit' element={<Form/>} />
       <Route path='/detail/:id' element={<Detail/>} />
-      <Route path='/' element={ <Fragment><Welcome/> <button onClick={()=>{navigate('/pokedex')}} >PLAY</button> </Fragment> } />
+      <Route path='/' element={ <Fragment><Welcome/> <button className='button1' onClick={()=>{navigate('/pokedex')}} >PLAY</button> </Fragment> } />
       <Route path='/*' element={<Fragment>
         <Nav/>
         <Routes>
