@@ -23,27 +23,39 @@ export default function Form() {
     speed: 0,
     height: 0,
     weight: 0,
-    types: [],
+    types: ['normal', null],
   });
 
-  useEffect(() => {
+  useEffect(() => { //se cargan los types desde la database
     dispatch(getTypes());
-  }, []);
+  }, []); 
 
-  const handleChange = (event) => {
+  const handleChange = (event) => { //se controla el formulario
     const { name, value } = event.target;
     setPokeData((prevData) => ({ ...prevData, [name]: value }));
   };
 
-  const handleTypeSelect = (event) => {
+  const handleTypeSelect = (event) => { //se controlan los types
     const { name, value } = event.target;
-    setPokeData((prevData) => ({
-      ...prevData,
-      types: [...prevData.types, value],
-    }));
+
+    if (name === "type1") { // si es la primera casilla se cambiará solo el primer espacio de types
+      setPokeData((prevData) => ({
+        ...prevData,
+        types: [value, prevData.types[1]],
+      }));
+    } else if (name === "type2") { //si es la segunda casilla se cambiará solo el segundo espacio de types
+      setPokeData((prevData) => ({
+        ...prevData,
+        types: [prevData.types[0], value],
+      }));
+    }
   };
 
-  const handleSubmit = async () => {
+  // useEffect(() => {
+  //   console.log(pokeData);
+  // }, [pokeData.types]);
+
+  const handleSubmit = async () => { // se envia la data a la database
     try {
       const response = await axios.post(
         "http://localhost:3001/pokemons",
@@ -157,8 +169,8 @@ export default function Form() {
               onChange={handleTypeSelect}
               className={styles.Select}
             >
-              {typesList && typesList.length > 0
-                ? typesList.map((type, i) => (
+              {typesList && typesList.length > 0 // si se cargaron los types desde la database se crearan los selects
+                ? typesList.map((type, i) => ( // cada select tiene la opction de un type cargado de la database
                     <option key={i} value={type.name}>
                       {type.name}
                     </option>
@@ -166,14 +178,14 @@ export default function Form() {
                 : null}
             </select>
           </div>
-          {twoTypes ? (
+          {twoTypes ? ( // si se presiona el boton para añadir un segundo type el boton se cambia por un nuevo select
             <>
               <select
                 name="type2"
                 onChange={handleTypeSelect}
                 className={styles.Select}
               >
-                {typesList && typesList.length > 0
+                {typesList && typesList.length > 0 //este nuevo select tiene su propio name para cambiar los types independientemente del otro
                   ? typesList.map((type, i) => (
                       <option key={i} value={type.name}>
                         {type.name}
@@ -182,25 +194,26 @@ export default function Form() {
                   : null}
               </select>
               <button
-                className={styles.button}
+                className={styles.button} // aparece un nuevo boton para ocultar el segundo select
                 onClick={() => setTwoTypes(false)}
               >
                 -
               </button>
             </>
-          ) : (
+          ) : ( // este es el boton que aparece en lugar del select cuando está oculto
             <button className={styles.button} onClick={() => setTwoTypes(true)}>
               +
             </button>
           )}
-          <FormErrors pokeData={pokeData} />
+          {/*formErrors se ocupa de controlar que la data del formulario sea correcta*/ }
+          <FormErrors pokeData={pokeData} /> 
           <button className={styles.button} onClick={() => handleSubmit()}>
             Submit
           </button>
         </div>
       </form>
       <div>
-        {preview ? (
+        {preview ? ( // si se presiona el boton de preview se renderizará una card con la info del form
           <Card
             name={pokeData.name}
             image={pokeData.image}
@@ -209,8 +222,10 @@ export default function Form() {
             disableLink={true}
             setPreview={setPreview}
           />
-        ) : (
-          <button className={styles.button2} onClick={() => setPreview(true)}>Preview</button>
+        ) : ( // si se oculta la preview card se renderizará el botón que permite verla de nuevo
+          <button className={styles.button2} onClick={() => setPreview(true)}>
+            Preview
+          </button>
         )}
       </div>
     </div>
