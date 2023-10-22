@@ -26,7 +26,7 @@
   width: 40vw;
   height: 70.5vh;
   position: absolute;
-  top: 5%;
+  top: 0vh;
   right: 7%;
 }
 
@@ -38,15 +38,15 @@
 }
 
 .img {
-  height: 450px;
-  width: 450px;
+  height: 60vh;
+  width: 40vw;
   border: 1px solid gray;
   background-color: rgba(128, 128, 128, 0.473);
-  margin-left: 9%;
+  margin-left: 5%;
 }
 
 .typesContainer {
-  width: 100px;
+  width: 10vw;
   height: 100px;
   flex-wrap: wrap;
   margin-left: 10%;
@@ -88,6 +88,7 @@
 
 .filler{
     position: absolute;
-    top: 10%;
+    top: 5vh;
     right: 0px;
+    width: 40vw;
 }
