@@ -26,9 +26,9 @@ export default function Card({
 // se cambia entre el formato de preview del form y la vista de la card en pokedex
   const containerStyle = disableLink ? styles.container2 : styles.container; 
 
-  // useEffect(() => {
-  //   console.log(types);
-  // }, [types]);
+  useEffect(() => {
+    console.log(types);
+  }, [types]);
 
   const dispatch = useDispatch();
 
@@ -80,7 +80,7 @@ export default function Card({
               ? types.map((e, i) => (
                   <ul className={styles.type} key={i}>
                     {" "}
-                    {e.name.toUpperCase()}
+                    {e && e.name.toUpperCase()}
                   </ul>
                 ))
               : null}

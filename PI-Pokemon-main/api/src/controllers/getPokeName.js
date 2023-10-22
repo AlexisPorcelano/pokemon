@@ -26,7 +26,7 @@ const getPokeName = async (req, res) => {
       if (!data) {
         res.status(404).json({ error: "Pokemon not found" });
       } else {
-        console.log("Pokemon found, but is it already added?");
+        console.log("Pokemon found, creating in database");
 
         const pokemonTypeNames = data.types.map(
           (typeData) => typeData.type.name
@@ -56,6 +56,11 @@ const getPokeName = async (req, res) => {
 
         await newPokemon.addTypes(foundTypes);
         console.log("pokemon-type relation completed");
+
+        const associatedTypes = await newPokemon.getTypes();
+
+        newPokemon.dataValues.Types = associatedTypes;
+
         res.status(200).json(newPokemon);
       }
     }
