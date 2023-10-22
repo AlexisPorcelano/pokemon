@@ -5,7 +5,7 @@ import Card from "../Card/Card";
 import styles from './Pokedex.module.css'
 
 export default function Pokedex() {
-  const pokemons = useSelector((state) => state.pokemons);
+  const pokemons = useSelector((state) => state.pokeCards);
   const change = useSelector((state) => state.change);
   const types = useSelector((state) => state.types)
   const dispatch = useDispatch();

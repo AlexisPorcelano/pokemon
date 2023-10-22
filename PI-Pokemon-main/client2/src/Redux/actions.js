@@ -81,16 +81,18 @@ export const getTypes = () => {
   };
 };
 
-export const addPokemon = (pokemon) => {
+export const addPokemon = (name) => {
+  console.log("actions add", name);
   return async (dispatch) => {
     try {
       const response = await axios.get(
         `http://localhost:3001/pokemons/${name}`
       );
       if (response.data) {
+        console.log(response.data);
         dispatch({
           type: ADD_POKEMON,
-          payload: pokemon,
+          payload: response.data,
         });
       }
     } catch (error) {
@@ -100,20 +102,9 @@ export const addPokemon = (pokemon) => {
 };
 
 export const delPokemon = (id) => {
-  return async (dispatch) => {
-    try {
-      const response = await axios.delete(
-        `http://localhost:3001/delPokemon/${id}`
-      );
-      if (response.data) {
-        dispatch({
-          type: DEL_POKEMON,
-          payload: id,
-        });
-      }
-    } catch (error) {
-      window.alert(error.message);
-    }
+  return {
+    type: DEL_POKEMON,
+    payload: id,
   };
 };
 

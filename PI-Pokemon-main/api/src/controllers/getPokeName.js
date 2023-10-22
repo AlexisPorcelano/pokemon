@@ -6,34 +6,42 @@ const getPokeName = async (req, res) => {
   const { name } = req.params;
 
   try {
-    const response = await axios.get(
-      `https://pokeapi.co/api/v2/pokemon/${name}`
-    );
-    const { data } = response;
+    const foundPokemon = await Pokemon.findOne({
+      where: { name: name },
+      include: Types,
+    });
 
-    if (!data) {
-      res.status(404).json({ error: "Pokemon not found" });
+    if (foundPokemon) {
+      console.log("Pokemon is already added to the database");
+
+      res.status(200).json(foundPokemon);
     } else {
-      console.log("Pokemon found, but is it already added?");
+      console.log("Trying to fetch pokemon from the api");
 
-      const foundPokemon = await Pokemon.findOne({
-        where: { name: data.name },
-        include: Types,
-      });
+      const response = await axios.get(
+        `https://pokeapi.co/api/v2/pokemon/${name}`
+      );
+      const { data } = response;
 
-      if (foundPokemon) {
-        console.log("Pokemon is already added to the database");
-        res.status(409).json({ error: "Pokemon already added" });
+      if (!data) {
+        res.status(404).json({ error: "Pokemon not found" });
       } else {
-        console.log("Adding the Pokemon");
+        console.log("Pokemon found, but is it already added?");
 
-        const pokemonTypeNames = data.types.map((typeData) => typeData.type.name);
+        const pokemonTypeNames = data.types.map(
+          (typeData) => typeData.type.name
+        );
 
         const foundTypes = await Promise.all(
           pokemonTypeNames.map((typeName) =>
             Types.findOne({ where: { name: typeName } })
           )
         );
+
+        if (!foundTypes)
+          res.status(404).json({ error: "Could not find types" });
+
+        console.log("found types, creating pokemon");
 
         const newPokemon = await Pokemon.create({
           name: data.name,
@@ -47,7 +55,7 @@ const getPokeName = async (req, res) => {
         });
 
         await newPokemon.addTypes(foundTypes);
-        console.log('pokemon-type relation completed');
+        console.log("pokemon-type relation completed");
         res.status(200).json(newPokemon);
       }
     }

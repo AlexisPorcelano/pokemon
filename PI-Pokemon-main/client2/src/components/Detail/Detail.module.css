@@ -5,6 +5,7 @@
   font-family: "Courier New", Courier, monospace;
   background-color: rgb(185, 202, 235);
   position: relative;
+  border: 1px solid black;
 }
 
 .linkBack {
@@ -27,7 +28,7 @@
   height: 70.5vh;
   position: absolute;
   top: 0vh;
-  right: 7%;
+  right: 20%;
 }
 
 .name {
@@ -39,7 +40,7 @@
 
 .img {
   height: 60vh;
-  width: 40vw;
+  width: 30vw;
   border: 1px solid gray;
   background-color: rgba(128, 128, 128, 0.473);
   margin-left: 5%;
@@ -89,6 +90,6 @@
 .filler{
     position: absolute;
     top: 5vh;
-    right: 0px;
+    right: 5vw;
     width: 35vw;
 }

@@ -3,8 +3,7 @@
   width: 80vw;
   margin: 20px;
   padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  border: 1px solid #000000;
   background-color: rgb(185, 202, 235);
   box-shadow: 0 0 5px #ccc;
 }

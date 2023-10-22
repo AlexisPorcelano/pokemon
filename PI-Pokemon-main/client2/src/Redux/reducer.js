@@ -9,7 +9,7 @@ import {
 
 let initState = {
   pokemons: [],
-  pokeBackUp: [],
+  pokeCards: [],
   types: [],
   change: false,
   detail: {},
@@ -22,21 +22,21 @@ const reducer = (state = initState, action) => {
         ...state,
         pokemons: action.payload,
         change: false,
-        pokeBackUp:
-          state.pokeBackUp.length === 0
-            ? action.payload
-            : [...state.pokeBackUp],
+        // pokeCards:
+        //   state.pokeCards.length === 0
+        //     ? action.payload
+        //     : [...state.pokeCards],
       };
     case ADD_POKEMON:
       return {
         ...state,
-        pokeBackUp: [...state.pokeBackUp, action.payload],
+        pokeCards: [...state.pokeCards, action.payload],
         change: true,
       };
     case DEL_POKEMON:
       return {
         ...state,
-        pokeBackUp: state.pokeBackUp.filter(
+        pokeCards: state.pokeCards.filter(
           (pokemon) => pokemon.id !== action.payload
         ),
         change: true,
