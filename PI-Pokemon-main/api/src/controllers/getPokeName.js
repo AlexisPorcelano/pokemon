@@ -12,7 +12,7 @@ const getPokeName = async (req, res) => {
     });
 
     if (foundPokemon) {
-      console.log("Pokemon is already added to the database");
+      console.log("Pokemon is already in the database");
 
       res.status(200).json(foundPokemon);
     } else {
