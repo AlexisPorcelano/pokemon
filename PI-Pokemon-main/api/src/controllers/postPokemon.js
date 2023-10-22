@@ -5,7 +5,11 @@ const postPokemon = async (req, res) => {
   try {
     const pokeData = req.body;
 
-    console.log("pokemon data received");
+    console.log("pokemon data received, but is it already added?");
+
+    const found = await Pokemon.findOne({where: {name: pokeData.name}})
+
+    if (found) res.status(409).json({ error: "Pokemon name already in the database" });
 
     const filteredTypeNames = pokeData.types.filter((typeName) => typeName);
 

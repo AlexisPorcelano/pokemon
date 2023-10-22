@@ -1,0 +1,93 @@
+.container {
+  width: 90vw;
+  height: 80vh;
+  display: grid;
+  font-family: "Courier New", Courier, monospace;
+  background-color: rgb(185, 202, 235);
+  position: relative;
+}
+
+.linkBack {
+  width: 100px;
+  height: 30px;
+  display: block;
+  margin: 10px 0;
+  text-decoration: none;
+  border: 1px solid gray;
+  color: #333;
+  background-color: rgba(129, 129, 129, 0.527);
+  border-radius: 5%;
+  margin-left: 9%;
+  font-family: "Courier New", Courier, monospace;
+  align-self: center;
+}
+
+.innerContainer {
+  width: 40vw;
+  height: 70.5vh;
+  position: absolute;
+  top: 5%;
+  right: 7%;
+}
+
+.name {
+  border: 1px solid gray;
+  color: rgb(119, 119, 119);
+  background-color: rgba(129, 129, 129, 0.527);
+  margin-left: 10%;
+}
+
+.img {
+  height: 450px;
+  width: 450px;
+  border: 1px solid gray;
+  background-color: rgba(128, 128, 128, 0.473);
+  margin-left: 9%;
+}
+
+.typesContainer {
+  width: 100px;
+  height: 100px;
+  flex-wrap: wrap;
+  margin-left: 10%;
+}
+
+.type {
+  color: rgb(119, 119, 119);
+  font-size: larger;
+  background-color: rgba(128, 128, 128, 0.473);
+  border: 1px solid gray;
+  margin-top: 1%;
+}
+
+.measure {
+  width: 200px;
+  height: 100px;
+  color: rgb(119, 119, 119);
+  background-color: rgba(128, 128, 128, 0.473);
+  border: 1px solid gray;
+  margin-top: 5%;
+  margin-left: 10%;
+}
+
+.allStats {
+  width: 130px;
+  border: 1px solid gray;
+  color: gray;
+  align-items: center;
+  border-radius: 1%;
+  background-color: rgba(128, 128, 128, 0.473);
+  margin-left: 10%;
+}
+
+.statItem {
+  align-self: auto;
+  color: rgb(119, 119, 119);
+  font-size: large;
+}
+
+.filler{
+    position: absolute;
+    top: 10%;
+    right: 0px;
+}

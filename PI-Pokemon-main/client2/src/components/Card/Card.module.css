@@ -37,6 +37,14 @@
   background-color: rgba(255, 255, 255, 0.836);
 }
 
+.imgDiv{
+    width: 150px;
+    height: 150px;
+    border: 1px solid gray;
+    background-color: rgba(255, 255, 255, 0.836);
+    margin-left: 17%;
+}
+
 .types {
   height: 40px;
   width: auto;
@@ -63,6 +71,6 @@
   background-image: url('./card.png');
   position: absolute;
   margin: 1%;
-  top: 25%;
-  right: 15%;
+  top: 15%;
+  right: 10%;
 }

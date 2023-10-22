@@ -51,11 +51,13 @@ export default function Card({
       </div>
       {disableLink ? ( // el form desactiva el link y lo cambia por un div para prevenir bugs
         <div>
-          <img
+          <div className={styles.imgDiv}>
+          {image && <img
             className={styles.img}
             src={image && image}
             alt={"pokemon sprite"}
-          />
+          />}
+          </div>
           <div className={styles.types}>
             {types.length > 0 // se hace un map para renderizar los types si estos existen
               ? types.map((e, i) => (
