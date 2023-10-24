@@ -8,7 +8,7 @@ export default function Searchbar() {
   const [name, setName] = useState("");
   const dispatch = useDispatch();
 
-  const pokeCards = useSelector((state) => state.pokeCards);
+  const pokeCards = useSelector((state) => state.backUp);
 
   const onSearch = () => {
     const found = pokeCards.some((e) => e.name === name);

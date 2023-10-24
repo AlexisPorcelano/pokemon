@@ -16,6 +16,10 @@ export const ORDER = "ORDER";
 
 export const FILTER = "FILTER";
 
+export const RESET = 'RESET';
+
+export const GET_ALL = 'GET_ALL'
+
 // export const createPokemon = (pokeData) => {
 //   console.log(pokeData);
 //   return async (dispatch) => {
@@ -76,7 +80,7 @@ export const getTypes = () => {
         payload: data,
       });
     } catch (error) {
-      console.error(error.message);
+      window.alert('Failed to load resources, please check your internet connection');
     }
   };
 };
@@ -110,14 +114,28 @@ export const delPokemon = (id) => {
 
 export const order = (value) => {
   return {
-    types: ORDER,
+    type: ORDER,
     payload: value,
   };
 };
 
 export const filter = (value) => {
   return {
-    types: FILTER,
+    type: FILTER,
     payload: value,
   };
 };
+
+export const reset = () => {
+  return {
+    type: RESET,
+    payload: null,
+  }
+}
+
+export const getAll = () => {
+  return {
+    type: GET_ALL,
+    payload: null,
+  }
+}
