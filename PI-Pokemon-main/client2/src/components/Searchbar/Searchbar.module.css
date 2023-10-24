@@ -3,11 +3,13 @@
 }
 
 .input{
+    font-family: 'Courier New', Courier, monospace;
     background-color: rgb(185, 202, 235);
     border: 1px solid blue;
 }
 
 .button{
+    font-family: 'Courier New', Courier, monospace;
     color: yellow;
     background-color: blue;
     border-radius: 1px;
