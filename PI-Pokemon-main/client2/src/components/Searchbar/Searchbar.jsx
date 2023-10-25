@@ -36,7 +36,7 @@ export default function Searchbar() {
         className={styles.input}
       />
       <button className={styles.button} onClick={onSearch}>
-        Search
+        SEARCH
       </button>
     </div>
   );

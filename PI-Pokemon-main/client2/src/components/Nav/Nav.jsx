@@ -17,7 +17,7 @@ export default function Nav() {
       {/* <button type="button " onClick={() => dispatch(getAll)}></button> */}
       <img className={styles.logo} src={pokelogo} alt="" />
       <Link to={"/submit"} className={styles.link}>
-        Submit new Pokemon
+        CREATE POKEMON
       </Link>
       <Searchbar />
       {showFilters ? (
@@ -32,7 +32,7 @@ export default function Nav() {
             type="button"
             onClick={() => setShowFilters(true)}
           >
-            Show filters
+            SHOW FILTERS
           </button>
         </div>
       )}

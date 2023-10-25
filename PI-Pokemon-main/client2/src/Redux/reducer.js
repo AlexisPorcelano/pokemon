@@ -41,6 +41,9 @@ const reducer = (state = initState, action) => {
         pokeCards: state.pokeCards.filter(
           (pokemon) => pokemon.id !== action.payload
         ),
+        backUp: state.backUp.filter(
+          (pokemon) => pokemon.id !== action.payload
+        ),
         change: true,
       };
     case GET_DETAIL:

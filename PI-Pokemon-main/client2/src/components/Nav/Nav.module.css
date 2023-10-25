@@ -8,14 +8,28 @@
 }
 
 .link{
+    font-family: 'Courier New', Courier, monospace;
+    height: 30px;
     text-decoration: none;
-    color: black;
+    color: white;
+    padding-right: 1%;
     margin-right: 5%;
+    padding-left: 1%;
+    font-family: 'Courier New', Courier, monospace;
+    border: none;
+    background: #333;
+    color: #fff;
+    border-radius: 3px;
+}
+
+.link:hover{
+    color:white;
 }
 
 .logo{
     width: 200px;
-    margin-right: 100px;
+    margin-right: 80px;
+    margin-left: 20px;
 }
 
 .button{
