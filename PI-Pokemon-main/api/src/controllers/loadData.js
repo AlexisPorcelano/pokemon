@@ -19,7 +19,6 @@ const axios = require("axios");
 const getPokemons = async (req, res) => {
   try {
     const count = await Pokemon.count();
-    let assets = 0
 
     if (count === 0) {
       let url = "https://pokeapi.co/api/v2/pokemon";
@@ -45,12 +44,9 @@ const getPokemons = async (req, res) => {
                   });
                   const pokemonData = await pokemonResponse.data;
                   pokemons.push(pokemonData); //se guarda el pokemon en el array
-                  assets++
-                  console.log('loaded assets: ', assets);
                 } catch (pokemonError) {
                   console.error(
                     "Error fetching Pokémon data:",
-                    pokemonData.name,
                     pokemonError.message
                   );
                 }
@@ -87,7 +83,6 @@ const getPokemons = async (req, res) => {
             speed: pokeData.stats[5].base_stat,
             height: pokeData.height,
             weight: pokeData.weight,
-            origin: 'API'
           });
           //se crea un array con los nombres de los types
           const pokemonTypes = pokeData.types.map((e) => e.type.name);
@@ -130,25 +125,4 @@ const getPokemons = async (req, res) => {
     console.error("Error:", error.message);
     res.status(500).json({ error: error.message });
   }
-};
-
-const getDetail = async (req, res) => {
-  // se encarga de encontrar el detalle de un pokemon especifico
-  const { id } = req.params;
-  const parsedId = parseInt(id);
-  try {
-    let found = await Pokemon.findOne({
-      where: { id: parsedId },
-      include: "Types",
-    });
-    if (!found) res.status(404).json({ error: "pokemon detail not found" });
-    if (found) res.status(200).json(found);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
-
-module.exports = {
-  getPokemons,
-  getDetail,
 };

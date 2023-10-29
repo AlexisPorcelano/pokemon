@@ -3,7 +3,7 @@
     flex-direction:column;
     justify-content: center;
     width: 90vw;
-    height: 70vh;
+    height: 80vh;
     align-items: center;
 }
 
@@ -14,4 +14,22 @@
 
 .image{
     height: 200px;
+}
+
+.loading{
+    height: 100px
+}
+
+.button1{
+    margin-top: 2%;
+    width: 150px;
+    height: 80px;
+    background-color: #333;
+    font-size:xx-large;
+    font-family: 'Courier New', Courier, monospace;
+    border-color: black;
+  }
+
+.button1:hover{
+    border-color: black;
 }

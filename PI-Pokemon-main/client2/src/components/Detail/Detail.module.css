@@ -25,7 +25,7 @@
 
 .innerContainer {
   width: 40vw;
-  height: 70.5vh;
+  height: 80vh;
   position: absolute;
   top: 0vh;
   right: 20%;
@@ -51,6 +51,7 @@
   height: 100px;
   flex-wrap: wrap;
   margin-left: 10%;
+  margin-top: 10%;
 }
 
 .type {
@@ -63,12 +64,13 @@
 
 .measure {
   width: 200px;
-  height: 100px;
+  height: 160px;
   color: rgb(119, 119, 119);
   background-color: rgba(128, 128, 128, 0.473);
   border: 1px solid gray;
-  margin-top: 5%;
-  margin-left: 10%;
+  right: 100px;
+  position: absolute;
+  bottom: 36px;
 }
 
 .allStats {
@@ -79,6 +81,7 @@
   border-radius: 1%;
   background-color: rgba(128, 128, 128, 0.473);
   margin-left: 10%;
+  margin-top: 4%;
 }
 
 .statItem {

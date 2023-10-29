@@ -34,6 +34,7 @@ const postPokemon = async (req, res) => {
       speed: pokeData.speed,
       height: pokeData.height,
       weight: pokeData.weight,
+      origin: 'DATABASE'
     });
 
     console.log("relating types");

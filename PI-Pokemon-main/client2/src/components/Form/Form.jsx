@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getTypes } from "../../Redux/actions";
+import { getPokemons, getTypes } from "../../Redux/actions";
 import styles from "./Form.module.css";
 import FormErrors from "./FormErrors";
 import axios from "axios";
@@ -94,14 +94,6 @@ export default function Form() {
     }
   };
 
-  useEffect(() => {
-    console.log(pokeData);
-  }, [pokeData]);
-
-  useEffect(() => {
-    console.log("error: ", error);
-  }, [error]);
-
   const handleSubmit = async () => {
     // se envia la data a la database
     try {
@@ -109,6 +101,7 @@ export default function Form() {
         "http://localhost:3001/pokemons",
         pokeData
       );
+      dispatch(getPokemons(pokeData))
       reset()
       window.alert('Succesfuly created pokemon')
     } catch (error) {

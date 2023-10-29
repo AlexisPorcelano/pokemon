@@ -4,7 +4,7 @@ import styles from "./Nav.module.css";
 import pokelogo from "./pokelogo.png";
 import OrderFilter from "../OrderFilter/OrderFilter";
 import { useDispatch } from "react-redux";
-import { getAll } from "../../Redux/actions";
+import { getAll, getPokemons } from "../../Redux/actions";
 import { useState } from "react";
 
 export default function Nav() {
@@ -20,6 +20,7 @@ export default function Nav() {
         CREATE POKEMON
       </Link>
       <Searchbar />
+      <button className={styles.button2} type="button" onClick={() => dispatch(getPokemons())}>Reset</button>
       {showFilters ? (
         <OrderFilter
           showFilters={showFilters}

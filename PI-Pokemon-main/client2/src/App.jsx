@@ -6,19 +6,19 @@ import Nav from './components/Nav/Nav'
 import Form from './components/Form/Form'
 import Pokedex from './components/Pokedex/Pokedex';
 import Detail from './components/Detail/Detail';
+import Pages from './components/Pages/Pages'
 
 function App() {
-
-  const navigate = useNavigate();
 
   return (
     <div >
     <Routes>
       <Route path='/submit' element={<Form/>} />
       <Route path='/detail/:id' element={<Detail/>} />
-      <Route path='/' element={ <Fragment><Welcome/> <button className='button1' onClick={()=>{navigate('/pokedex')}} >PLAY</button> </Fragment> } />
+      <Route path='/' element={<Welcome/>} />
       <Route path='/*' element={<Fragment>
         <Nav/>
+        <Pages/>
         <Routes>
           <Route path='/pokedex' element={<Pokedex/>}/>
         </Routes>

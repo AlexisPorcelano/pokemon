@@ -2,6 +2,8 @@ import axios from "axios";
 
 export const ADD_POKEMON = "ADD_POKEMON";
 
+export const SEARCH = "SEARCH";
+
 export const DEL_POKEMON = "DEL_POKEMON";
 
 export const GET_POKEMONS = "GET_POKEMONS";
@@ -10,33 +12,19 @@ export const GET_TYPES = "GET_TYPES";
 
 export const GET_DETAIL = "GET_DETAIL";
 
-// export const CREATE_POKEMON = "CREATE_POKEMON";
+export const CHANGE = "CHANGE";
 
 export const ORDER = "ORDER";
 
 export const FILTER = "FILTER";
 
-export const RESET = 'RESET';
+export const RESET = "RESET";
 
-export const GET_ALL = 'GET_ALL'
+export const GET_ALL = "GET_ALL";
 
-// export const createPokemon = (pokeData) => {
-//   console.log(pokeData);
-//   return async (dispatch) => {
-//     try {
-//       const response = await axios.post(
-//         `http://localhost:3001/pokemons/${pokeData.name}`
-//       );
-//       const { data } = response;
-//       dispatch({
-//         type: CREATE_POKEMON,
-//         payload: data,
-//       });
-//     } catch (error) {
-//       console.error(error.message);
-//     }
-//   };
-// };
+export const ORIGIN = "ORIGIN";
+
+export const CHANGE_PAGE = "CHANGE_PAGE";
 
 export const getDetail = (id) => {
   return async (dispatch) => {
@@ -80,28 +68,17 @@ export const getTypes = () => {
         payload: data,
       });
     } catch (error) {
-      window.alert('Failed to load resources, please check your internet connection');
+      window.alert(
+        "Failed to load resources, please check your internet connection"
+      );
     }
   };
 };
 
-export const addPokemon = (name) => {
-  console.log("actions add", name);
-  return async (dispatch) => {
-    try {
-      const response = await axios.get(
-        `http://localhost:3001/pokemons/${name}`
-      );
-      if (response.data) {
-        console.log(response.data);
-        dispatch({
-          type: ADD_POKEMON,
-          payload: response.data,
-        });
-      }
-    } catch (error) {
-      window.alert(error.message);
-    }
+export const search = (found) => {
+  return {
+    type: SEARCH,
+    payload: found,
   };
 };
 
@@ -126,16 +103,37 @@ export const filter = (value) => {
   };
 };
 
+export const originFilter = (value) => {
+  return {
+    type: ORIGIN,
+    payload: value,
+  };
+};
+
 export const reset = () => {
   return {
     type: RESET,
     payload: null,
-  }
-}
+  };
+};
 
 export const getAll = () => {
   return {
     type: GET_ALL,
     payload: null,
-  }
-}
+  };
+};
+
+export const changeAction = (boolean) => {
+  return {
+    type: CHANGE,
+    payload: boolean,
+  };
+};
+
+export const changePage = (page) => {
+  return {
+    type: CHANGE_PAGE,
+    payload: page,
+  };
+};

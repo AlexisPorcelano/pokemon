@@ -16,3 +16,14 @@
     color: #fff;
     border-radius: 3px;
 }
+
+.button2{
+    height: 20px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: xx-small;
+    border: none;
+    background: #333;
+    color: #fff;
+    border-radius: 3px;
+    position: absolute;
+}

@@ -3,10 +3,10 @@
     width: 360px;
     display: flex;
     align-items:center;
-    margin-left: 5%;
+    margin-left: 1%;
     background-color: rgb(185, 202, 235);
     border: 1px solid black;
-    padding-left: 2%;
+    padding-left: 1%;
     padding: 1%;
     border-radius: 1%;
 }

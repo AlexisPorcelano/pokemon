@@ -1,40 +1,53 @@
 import {
-  ADD_POKEMON,
-  // CREATE_POKEMON,
+  CHANGE,
   DEL_POKEMON,
   FILTER,
-  GET_ALL,
   GET_DETAIL,
   GET_POKEMONS,
   GET_TYPES,
   ORDER,
   RESET,
+  ORIGIN,
+  SEARCH,
+  CHANGE_PAGE,
 } from "./actions";
 
 let initState = {
   pokemons: [],
   pokeCards: [],
+  page: 1,
+  numPages: 1,
   types: [],
   change: false,
   detail: {},
   backUp: [],
+  orderFilter: [],
 };
 
 const reducer = (state = initState, action) => {
   switch (action.type) {
     case GET_POKEMONS:
-      return {
-        ...state,
-        pokemons: action.payload,
-        change: false,
+      let data = [...action.payload]
+      let pages = []
+      while(data.length > 0){
+        let page = data.splice(0, 12)
+        pages.push(page)
       }
-    case ADD_POKEMON:
       return {
         ...state,
-        pokeCards: [...state.pokeCards, action.payload],
-        backUp: [...state.backUp, action.payload],
-        change: true,
-      };
+        numPages: pages.length,
+        pokemons: action.payload,
+        orderFilter: action.payload,
+        pokeCards: pages,
+        backUp: pages,
+      }
+    case SEARCH: 
+      return {
+        ...state,
+        orderFilter: state.pokemons.filter((pokemon) => pokemon.name === action.payload),
+        page: 1,
+        change: true
+      }
     case DEL_POKEMON:
       return {
         ...state,
@@ -58,48 +71,90 @@ const reducer = (state = initState, action) => {
       };
     case ORDER:
       if (action.payload === "asc") {
-        console.log('asc');
         return {
           ...state,
-          pokeCards: state.backUp.sort((a, b) => a.name.localeCompare(b.name)),
+          orderFilter: state.orderFilter.sort((a, b) => a.name.localeCompare(b.name)),
           change: true,
         };
       }
       if (action.payload === "des") {
-        console.log('des');
         return {
           ...state,
-          pokeCards: state.backUp.sort((a, b) => b.name.localeCompare(a.name)),
+          orderFilter: state.orderFilter.sort((a, b) => b.name.localeCompare(a.name)),
           change: true,
         };
       }
+      if (action.payload === "atk+") {
+        return {
+          ...state,
+          orderFilter: state.orderFilter.sort((a, b) => b.attack - a.attack),
+          change: true,
+        }
+      }
+      if (action.payload === "atk-"){
+        return{
+          ...state,
+          orderFilter: state.orderFilter.sort((a, b) => a.attack - b.attack),
+          change: true,
+        }
+      }
+
       if (action.payload === ''){
         return state
       }
     case FILTER:
       if (action.payload === '') {
-        return state
+        return {...state}
       }
     
       return {
         ...state,
-        pokeCards: state.backUp.filter((pokemon) =>
+        orderFilter: state.pokemons.filter((pokemon) =>
           pokemon.Types.some((type) => type.name === action.payload)
         ),
         change: true,
       };
+    case ORIGIN:
+
+      if (action.payload === '') return state
+      if (action.payload === 'From API') {
+        return {
+          ...state, 
+          orderFilter: state.pokemons.filter((pokemon) => pokemon.origin === 'API'),
+          change: true,
+        }
+      }
+      if (action.payload === 'From database') {
+        return {
+          ...state, 
+          orderFilter: state.pokemons.filter((pokemon) => pokemon.origin === 'database'),
+          change: true,
+        }
+      }
     case RESET:
-      console.log('reset');
       return {
         ...state,
-        pokeCards: state.backUp,
+        orderFilter: state.pokemons,
         change: true,
       }
-    case GET_ALL:
+    case CHANGE:
+          let newData = [...state.orderFilter]
+          let newPages = []
+          while(newData.length > 0){
+            let page = newData.splice(0, 12)
+            newPages.push(page)
+          }
       return{
         ...state,
-        pokeCards: state.pokemons,
-        change: true,
+        numPages: newPages.length,
+        backUp: state.pokeCards,
+        pokeCards: newPages,
+        change: false,
+      }
+    case CHANGE_PAGE:
+      return {
+        ...state,
+        page: action.payload
       }
     default:
       return state;

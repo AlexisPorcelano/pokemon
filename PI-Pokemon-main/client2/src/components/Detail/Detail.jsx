@@ -17,10 +17,12 @@ export default function Detail() {
     dispatch(getDetail(parsedId));
   }, [parsedId]);
 
-  if (pokemon && pokemon.name) {
-    const slice = pokemon.name.slice(1);
-    const upper = pokemon.name.charAt(0).toUpperCase();
-    pokemon.name = upper + slice;
+  if (pokemon.name) {
+    let newName = pokemon.name.split("-");
+    for (let i = 0; i < newName.length; i++) {
+      newName[i] = newName[i].charAt(0).toUpperCase() + newName[i].slice(1);
+    }
+    pokemon.name = newName.join(" ");
   }
 
   return (
@@ -69,6 +71,7 @@ export default function Detail() {
           <h3>
             Weight: {pokemon.weight && pokemon.weight}
             {" Lbs."}
+            <h4 >Origin: {pokemon.origin && pokemon.origin.toUpperCase()}</h4>
           </h3>
         </div>
       </div>

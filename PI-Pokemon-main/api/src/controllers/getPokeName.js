@@ -52,6 +52,7 @@ const getPokeName = async (req, res) => {
           speed: data.stats[5].base_stat,
           height: data.height,
           weight: data.weight,
+          origin: 'API'
         });
 
         await newPokemon.addTypes(foundTypes);

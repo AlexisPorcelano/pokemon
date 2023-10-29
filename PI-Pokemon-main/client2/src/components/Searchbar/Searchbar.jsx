@@ -1,21 +1,36 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addPokemon } from "../../Redux/actions";
+import { getPokemons, search } from "../../Redux/actions";
 import styles from "./Searchbar.module.css";
 
 export default function Searchbar() {
   const [name, setName] = useState("");
   const dispatch = useDispatch();
 
-  const pokeCards = useSelector((state) => state.backUp);
+  const pokemons = useSelector((state) => state.pokemons);
 
   const onSearch = () => {
-    const found = pokeCards.some((e) => e.name === name);
+    const found = pokemons.some((e) => e.name === name);
     if (found) {
-      window.alert("Pokemon is already being displayed");
+      console.log('pokemon found');
+      dispatch(search(name));
     } else {
-      dispatch(addPokemon(name));
+      return async () => {
+        try {
+          const response = await axios.get(
+            `http://localhost:3001/pokemons/${name}`
+          );
+          if (response.data) {
+            dispatch(getPokemons)
+            setTimeout(() => {
+              dispatch(search(name))
+            }, 1000);
+          }
+        } catch (error) {
+          window.alert(error.message);
+        }
+      };
     }
     setName("");
   };
