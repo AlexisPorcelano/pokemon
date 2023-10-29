@@ -27,16 +27,6 @@ export default function OrderFilter({showFilters, setShowFilters}) {
   }
   };
 
-  const handleReset = () => {
-    setOrderValue(''); // Reset orderValue
-    setFilterValue(''); // Reset filterValue
-
-    const onScreenOrderValue = document.getElementById("order-select")
-    const onScreenFilterValue = document.getElementById("filter-select")
-    dispatch(reset());
-    setShowFilters(false)
-  };
-
   useEffect(() => {
     if(filterValue !== '')dispatch(filter(filterValue));
   }, [filterValue])
@@ -72,7 +62,6 @@ export default function OrderFilter({showFilters, setShowFilters}) {
       <option className={styles.option} >From API</option>
       <option className={styles.option} >From database</option>
       </select>
-    <button className={styles.button} type="button" onClick={() => handleReset()}>Reset</button>
   </div>
   );
 }

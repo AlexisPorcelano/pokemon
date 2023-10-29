@@ -21,7 +21,7 @@ let initState = {
   change: false,
   detail: {},
   backUp: [],
-  orderFilter: [],
+  newState: [],
 };
 
 const reducer = (state = initState, action) => {
@@ -37,26 +37,21 @@ const reducer = (state = initState, action) => {
         ...state,
         numPages: pages.length,
         pokemons: action.payload,
-        orderFilter: action.payload,
+        newState: action.payload,
         pokeCards: pages,
         backUp: pages,
       }
     case SEARCH: 
       return {
         ...state,
-        orderFilter: state.pokemons.filter((pokemon) => pokemon.name === action.payload),
+        newState: state.pokemons.filter((pokemon) => pokemon.name === action.payload),
         page: 1,
         change: true
       }
     case DEL_POKEMON:
       return {
         ...state,
-        pokeCards: state.pokeCards.filter(
-          (pokemon) => pokemon.id !== action.payload
-        ),
-        backUp: state.backUp.filter(
-          (pokemon) => pokemon.id !== action.payload
-        ),
+        newState: state.newState.filter(pokemon => pokemon.id !== action.payload),
         change: true,
       };
     case GET_DETAIL:
@@ -73,28 +68,28 @@ const reducer = (state = initState, action) => {
       if (action.payload === "asc") {
         return {
           ...state,
-          orderFilter: state.orderFilter.sort((a, b) => a.name.localeCompare(b.name)),
+          newState: state.newState.sort((a, b) => a.name.localeCompare(b.name)),
           change: true,
         };
       }
       if (action.payload === "des") {
         return {
           ...state,
-          orderFilter: state.orderFilter.sort((a, b) => b.name.localeCompare(a.name)),
+          newState: state.newState.sort((a, b) => b.name.localeCompare(a.name)),
           change: true,
         };
       }
       if (action.payload === "atk+") {
         return {
           ...state,
-          orderFilter: state.orderFilter.sort((a, b) => b.attack - a.attack),
+          newState: state.newState.sort((a, b) => b.attack - a.attack),
           change: true,
         }
       }
       if (action.payload === "atk-"){
         return{
           ...state,
-          orderFilter: state.orderFilter.sort((a, b) => a.attack - b.attack),
+          newState: state.newState.sort((a, b) => a.attack - b.attack),
           change: true,
         }
       }
@@ -109,7 +104,7 @@ const reducer = (state = initState, action) => {
     
       return {
         ...state,
-        orderFilter: state.pokemons.filter((pokemon) =>
+        newState: state.pokemons.filter((pokemon) =>
           pokemon.Types.some((type) => type.name === action.payload)
         ),
         change: true,
@@ -120,25 +115,25 @@ const reducer = (state = initState, action) => {
       if (action.payload === 'From API') {
         return {
           ...state, 
-          orderFilter: state.pokemons.filter((pokemon) => pokemon.origin === 'API'),
+          newState: state.pokemons.filter((pokemon) => pokemon.origin === 'API'),
           change: true,
         }
       }
       if (action.payload === 'From database') {
         return {
           ...state, 
-          orderFilter: state.pokemons.filter((pokemon) => pokemon.origin === 'database'),
+          newState: state.pokemons.filter((pokemon) => pokemon.origin === 'database'),
           change: true,
         }
       }
     case RESET:
       return {
         ...state,
-        orderFilter: state.pokemons,
+        newState: state.pokemons,
         change: true,
       }
     case CHANGE:
-          let newData = [...state.orderFilter]
+          let newData = [...state.newState]
           let newPages = []
           while(newData.length > 0){
             let page = newData.splice(0, 12)

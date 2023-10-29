@@ -35,14 +35,19 @@
 .button{
     height: 30px;
     font-family: 'Courier New', Courier, monospace;
-    border: 1px solid gray;
     color: rgb(102, 102, 102);
-    background-color: rgba(129, 129, 129, 0.527);
+    background-color: rgba(129, 129, 129, 0);
+    margin-left: 60px;
+    margin-bottom: 5px;
+}
+
+.button:hover{
+    border: 1px transparent;
 }
 
 .container2{
     height: 30px;
-    width: 360px;
+    width: 280px;
     display: flex;
     align-items:center;
     margin-left: 1%;
@@ -54,14 +59,12 @@
 }
 
 .button2{
-    height: 20px;
+    height: 30px;
     font-family: 'Courier New', Courier, monospace;
-    font-size: xx-small;
     border: none;
     background: #333;
     color: #fff;
     border-radius: 3px;
-    position: absolute;
-    top: 90px;
-    left: 47%;
+    font-size:small;
+    margin-left: 0.5%;
 }

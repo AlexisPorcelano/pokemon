@@ -46,11 +46,10 @@ const getPokemons = async (req, res) => {
                   const pokemonData = await pokemonResponse.data;
                   pokemons.push(pokemonData); //se guarda el pokemon en el array
                   assets++
-                  console.log('loaded assets: ', assets);
+                  console.log('loaded assets: ', assets, pokemonData.name);
                 } catch (pokemonError) {
                   console.error(
                     "Error fetching Pokémon data:",
-                    pokemonData.name,
                     pokemonError.message
                   );
                 }

@@ -10,6 +10,11 @@ import { useState } from "react";
 export default function Nav() {
   const dispatch = useDispatch();
 
+  const handleReset = () => {
+    dispatch(getPokemons());
+    setShowFilters(false);
+  };
+
   const [showFilters, setShowFilters] = useState(false);
 
   return (
@@ -20,14 +25,13 @@ export default function Nav() {
         CREATE POKEMON
       </Link>
       <Searchbar />
-      <button className={styles.button2} type="button" onClick={() => dispatch(getPokemons())}>Reset</button>
       {showFilters ? (
         <OrderFilter
           showFilters={showFilters}
           setShowFilters={setShowFilters}
         />
       ) : (
-        <div className={styles.container2} >
+        <div className={styles.container2}>
           <button
             className={styles.button}
             type="button"
@@ -37,6 +41,13 @@ export default function Nav() {
           </button>
         </div>
       )}
+      <button
+        className={styles.button2}
+        type="button"
+        onClick={() => handleReset()}
+      >
+        Reset
+      </button>
     </div>
   );
 }
